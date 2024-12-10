@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="css/style-cart.css">
+</head>
+<body>
+  <div class="cart-container">
+    <div class="cart">
+      <h1>Shopping Cart</h1>
+      <div class="cart-items">
+        <!-- Product 1 mega spinner -->
+        <div class="item" data-price="44">
+          <img src="https://via.placeholder.com/50" alt="Fidget Spinner Ultra Smooth">
+          <div class="item-details">
+            <p class="item-name">Fidget Spinner Ultra Smooth</p>
+            <p class="item-price">€44.00</p>
+          </div>
+          <div class="quantity-control">
+            <button class="minus-btn">-</button>
+            <input type="text" value="1" class="quantity">
+            <button class="plus-btn">+</button>
+          </div>
+          <div class="item-total">€44.00</div>
+          <button class="remove-btn">x</button>
+        </div>
+
+        <!-- Product 2 max spinner-->
+        <div class="item" data-price="30">
+          <img src="https://via.placeholder.com/50" alt="Fidget Spinner Max">
+          <div class="item-details">
+            <p class="item-name">Fidget Spinner Max</p>
+            <p class="item-price">€30.00</p>
+          </div>
+          <div class="quantity-control">
+            <button class="minus-btn">-</button>
+            <input type="text" value="1" class="quantity">
+            <button class="plus-btn">+</button>
+          </div>
+          <div class="item-total">€30.00</div>
+          <button class="remove-btn">x</button>
+        </div>
+
+        <!-- Product 3 killer -->
+        <div class="item" data-price="60">
+          <img src="https://via.placeholder.com/50" alt="Fidget Spinner Destroyer">
+          <div class="item-details">
+            <p class="item-name">Fidget Spinner Destroyer</p>
+            <p class="item-price">€60.00</p>
+          </div>
+          <div class="quantity-control">
+            <button class="minus-btn">-</button>
+            <input type="text" value="1" class="quantity">
+            <button class="plus-btn">+</button>
+          </div>
+          <div class="item-total">€60.00</div>
+          <button class="remove-btn">x</button>
+        </div>
+      </div>
+      <a href="#" class="back-to-shop">← Back to shop</a>
+    </div>
+    <div class="summary">
+      <h2>Summary</h2>
+      <div class="summary-item">
+        <span>Items</span>
+        <span id="total-items">3</span>
+      </div>
+      <div class="summary-item">
+        <span>Total Price</span>
+        <span id="total-price">€134.00</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div>
+  <script src="cart.js"></script>
+</body>
+</html>
