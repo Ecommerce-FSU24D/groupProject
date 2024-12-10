@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header > .navbar {
+  display: flex;
+  gap: 50px;
+  background-color: #597454;
+  height: 100px;
+}
+
+.header > .navbar > input {
+  height: 35px;
+  width: 300px;
+  align-self: center;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.header > .navbar > a {
+  align-self: center;
+  color: white;
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.product-card {
+  height: 600px;
+  width: 400px;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.product-image {
+  height: 300px;
+  width: 300px;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.product-content {
+  margin-left: 5px;
+  margin-top: 25px;
+}
