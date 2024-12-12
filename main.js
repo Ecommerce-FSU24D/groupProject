@@ -12,20 +12,20 @@ async function fetchProducts() {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
     
-        // Extrahera priset från product.price
+        // Extrahera priset 
         const price = product.price["$numberDecimal"] ? `${product.price["$numberDecimal"]} kr` : "Ej angivet";
     
+        // Hämtar betyget
         const rating = Array.isArray(product.ratings) && product.ratings.length > 0
         ? product.ratings[0].rating
         : "Ingen rating";
-        const imageUrl = product.images || "default-image.jpg";
 
         
         productCard.innerHTML = `
-            <img src="${imageUrl}" alt="${product.name}">
+            <img src="${product.images}" alt="${product.title}">
             <p>${price}</p>
             <h3>${product.name}</h3>
-            <p>Betyg: ${rating}</p>
+            <p>Betyg: ${rating} av 5</p>
             <p>${product.description.substring(0, 50)}... <a href="product.html?id=${product.id}" class="read-more-link">Läs mer</a></p>
         `;
     
