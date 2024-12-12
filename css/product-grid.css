@@ -38,29 +38,68 @@
 
 /* För varje kort */
 .product-card {
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
+  border: 1px solid #ddd;  
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: center;
   padding: 10px;
   background-color: #fff; 
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px); 
 }
 
 /* Bilden i kortet */
 .product-card img {
   max-width: 100%;
-  height: auto;
-  border-bottom: 1px solid #ddd; 
+  height: 150px;
+  object-fit: cover; 
 }
 
-/* Titel och beskrivning */
+/* Produktinformationen */
 .product-card h3 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 10px 0;
+  text-align: left;
 }
 
 .product-card p {
   font-size: 0.9rem;
   color: #666;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.product-card .read-more-link {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.product-card .read-more-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+
+
+/* Media queries */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr; 
+  }
 }
