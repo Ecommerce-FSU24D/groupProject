@@ -16,8 +16,13 @@ async function fetchProducts() {
         // Välj fyra slumpmässiga produkter
         const shuffledProducts = products.sort(() => 0.5 - Math.random());
         const randomProducts = shuffledProducts.slice(0, 4);
+
+        /* Spara products i localStorage så att de kan hämtas i product-page.html. Jag hittar inget sätt att komma åt objektet
+        dynamiskt via vårt API så jag får hämta dem via localStorage istället.*/
+
+        localStorage.setItem('products', JSON.stringify(products));
     
-        randomProducts.forEach(product => {
+        randomProducts.forEach((product, index) => {
           const productCard = document.createElement('div');
           productCard.classList.add('product-card');
 
@@ -35,7 +40,7 @@ async function fetchProducts() {
               <p>${price}</p>
               <h3>${product.name}</h3>
               <p>Betyg: ${rating} av 5</p>
-              <p>${product.description.substring(0, 50)}... <a href="product.html?id=${product.id}" class="read-more-link">Läs mer</a></p>
+              <p>${product.description.substring(0, 50)}... <a href="product-page.html?index=${index}" class="read-more-link">Läs mer</a></p>
           `;
 
           productGrid.appendChild(productCard);
