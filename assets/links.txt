@@ -1,0 +1,15 @@
+GitHub:
+https://github.com/Ecommerce-FSU24D/groupProject
+https://github.com/frodrikandersson/ecommerce-api
+
+Vercel:
+https://ecommerce-api-livid-six.vercel.app/products
+
+Jira:
+https://team-confused.atlassian.net/jira/software/projects/SH/boards/2/backlog?epics=visible
+
+Dagbok:
+https://docs.google.com/document/d/1RyO6CEl9iWVu7sPgwWsAOm6TR713Ms8OVDnxwNSjkuY/edit?tab=t.0
+
+ERD:
+https://lucid.app/lucidchart/a89debbb-af52-42cb-bd93-445e1109f5a6/edit?viewport_loc=-1554%2C-410%2C3138%2C1391%2C0_0&invitationId=inv_a78d558a-df93-493a-91a9-2baa33487a95
