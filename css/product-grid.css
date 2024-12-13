@@ -28,16 +28,22 @@
   text-decoration: none;
 }
 
+h1 {
+  text-align: center;
+}
+
 /* För hela gridfältet */
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
   gap: 20px; 
   padding: 20px;
 }
 
 /* För varje kort */
 .product-card {
+  width: 250px;
   border: 1px solid #ddd;  
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
