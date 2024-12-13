@@ -1,0 +1,32 @@
+**FOR THE WEBAPP**
+
+1. Paste in HTML
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alata&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+
+2. Paste in CSS
+
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 300 to 900
+
+.rubik-<uniquifier> {
+  font-family: "Rubik", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.alata-regular {
+  font-family: "Alata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+**FOR LOCAL PC WINDOWS**
+
+C:\Windows\Fonts
+Drag and drop font files from webapp directory to local font directory
