@@ -1,32 +1,114 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-.header > .navbar {
+body {
+  font-family: "Helvetica, Arial, sans-serif";
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+/* --- NAV START --- */
+
+nav {
   display: flex;
-  gap: 50px;
-  background-color: #597454;
-  height: 100px;
-}
-
-.header > .navbar > input {
-  height: 35px;
-  width: 300px;
-  align-self: center;
-  margin-left: auto;
-  margin-right: 20px;
-}
-
-.header > .navbar > a {
-  align-self: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(../assets/bakgrund5.png), linear-gradient(to bottom, rgba(52, 117, 58, 0.362) 10%, rgb(255, 255, 255) 100%);
+  background-position: center ; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  background-blend-mode: overlay;
   color: white;
-  margin-left: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
+  border-bottom:  dashed 5px #CEAC5C;
+  width: 100%;
+  overflow: hidden;
 }
+
+/* --- NAV END --- */
+
+/* --- LINKS START --- */
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+}
+
+nav ul {
+  display: flex;
+  gap: 15px;
+  font-size: 25px;
+  list-style: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none; 
+}
+
+nav a:hover {
+  color: #CEAC5C;
+  text-decoration: underline;
+}
+
+/* --- LINKS END --- */
+
+/* --- SEARCH START --- */
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+form input[type="text"] {
+  padding: 8px;
+  font-size: 20px;
+  border: 1px solid white;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+form button {
+  border: none;
+  color: white;
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+form button:hover {
+  cursor: pointer;
+  color: #CEAC5C;
+  transform: scale(1.05); 
+}
+
+/* --- SEARCH END --- */
+
+/* --- LOGO START --- */
+
+.logo {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-grow: 1;
+  margin: 4%;
+}
+
+.logo img {
+  width: 40%;
+  height: auto;
+  justify-self: center;
+  background-color: #597454;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+}
+
+/* --- LOGO END --- */
 
 h1 {
   text-align: center;

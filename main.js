@@ -7,6 +7,9 @@
 
 
 /* ##### Product-grid ##### */
+
+
+
 const categories = {
     "67587d1b1b92081d71bb9836": "Jul",
     "67587d6c1b92081d71bb9838": "Halloween",
