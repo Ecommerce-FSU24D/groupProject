@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>User Signup Page</h1>
+
+    <label for="name">Username:</label>
+    <input type="text" id="name" name="name" >
+    <br>
+    <label for="email">Email:</label>
+    &nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="email" id="email" name="email" >
+    <br>
+    <label for="password">Password:</label>
+    <input type="text" id="password" name="password">
+    <br>
+    <button onclick="addUser()">Submit</button>
+
+    <script>
+        async function addUser(){
+            const nameInput = document.getElementById("name").value;
+            const emailInput = document.getElementById("email").value;
+            const passwordInput = document.getElementById("password").value;
+
+            const data = new URLSearchParams();
+
+            data.append('name', nameInput);
+            data.append('email', emailInput);
+            data.append('password', passwordInput);
+
+            await fetch("https://ecommerce-api-livid-six.vercel.app/users/add", {
+                method: 'POST',
+                body: data
+            });
+        }
+    </script>
+</body>
+</html>
