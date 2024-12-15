@@ -7,22 +7,39 @@
 
 
 /* ##### Product-grid ##### */
-async function fetchProducts() {
+
+
+
+const categories = {
+    "67587d1b1b92081d71bb9836": "Jul",
+    "67587d6c1b92081d71bb9838": "Halloween",
+    "67587da91b92081d71bb983a": "Natur",
+    "67587e091b92081d71bb983c": "Rymden",
+    "67587e4d1b92081d71bb983e": "Sport",
+    "67587e9b1b92081d71bb9840": "Träning",
+    "67587f001b92081d71bb9842": "LED",
+    "67587fcd1b92081d71bb9844": "Samlarobjekt"
+};
+
+async function fetchProducts(categoryName) {
     try {
+        //Hämtar produkter från API
         const response = await fetch('https://ecommerce-api-livid-six.vercel.app/products');
+        if (!response.ok) throw new Error("Fel vid hämtning av produkter");
         const products = await response.json();
+
+        // Filtrerar produkter baserat på kategori
+        const filterProducts = products.filter(product => categories[product.category] === categoryName);
+
         const productGrid = document.querySelector('.product-grid');
-    
-        // Välj fyra slumpmässiga produkter
-        const shuffledProducts = products.sort(() => 0.5 - Math.random());
-        const randomProducts = shuffledProducts.slice(0, 4);
 
-        /* Spara products i localStorage så att de kan hämtas i product-page.html. Jag hittar inget sätt att komma åt objektet
-        dynamiskt via vårt API så jag får hämta dem via localStorage istället.*/
-
-        localStorage.setItem('products', JSON.stringify(products));
+        if (filterProducts.length === 0) {
+            productGrid.innerHTML = `<p>Inga produkter hittades för kategorin "${categoryName}".</p>`;
+            return;
+        }
     
-        randomProducts.forEach((product, index) => {
+
+        filterProducts.forEach(product => {
           const productCard = document.createElement('div');
           productCard.classList.add('product-card');
 
@@ -32,15 +49,16 @@ async function fetchProducts() {
           // Hämtar betyget
           const rating = Array.isArray(product.ratings) && product.ratings.length > 0
           ? product.ratings[0].rating
-          : "Ingen rating";
-
+          : "Betyg saknas";
 
           productCard.innerHTML = `
-              <img src="${product.images}" alt="${product.title}">
-              <p>${price}</p>
-              <h3>${product.name}</h3>
-              <p>Betyg: ${rating} av 5</p>
-              <p>${product.description.substring(0, 50)}... <a href="product-page.html?index=${index}" class="read-more-link">Läs mer</a></p>
+
+            <img src="${product.images}" alt="${product.title}">
+            <p>${price}</p>
+            <h3>${product.name}</h3>
+            <p>Betyg: ${rating} av 5</p>
+            <p>${product.description.substring(0, 50)}... <a href="product.html?id=${product.id}" class="read-more-link">Läs mer</a></p>
+
           `;
 
           productGrid.appendChild(productCard);
@@ -51,6 +69,18 @@ async function fetchProducts() {
     }
 }
   
-fetchProducts();
+function getQueryParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+// Läser kategori från query string och visa produkter
+const selectedCategory = getQueryParameter('category');
+if (selectedCategory) {
+    document.querySelector('main h1').textContent = `${selectedCategory}`;
+    fetchProducts(selectedCategory);
+} else {
+    document.querySelector('.product-grid').innerHTML = `<p>Ingen kategori vald.</p>`;
+}
 
 /* ##### Product-page ##### */
