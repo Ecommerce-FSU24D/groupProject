@@ -38,6 +38,7 @@ async function fetchProducts(categoryName) {
             return;
         }
     
+
         filterProducts.forEach(product => {
           const productCard = document.createElement('div');
           productCard.classList.add('product-card');
@@ -51,11 +52,13 @@ async function fetchProducts(categoryName) {
           : "Betyg saknas";
 
           productCard.innerHTML = `
+
             <img src="${product.images}" alt="${product.title}">
             <p>${price}</p>
             <h3>${product.name}</h3>
             <p>Betyg: ${rating} av 5</p>
             <p>${product.description.substring(0, 50)}... <a href="product.html?id=${product.id}" class="read-more-link">Läs mer</a></p>
+
           `;
 
           productGrid.appendChild(productCard);
