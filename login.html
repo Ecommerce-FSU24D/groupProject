@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
-    <h1>User Input Page</h1>
-    <form id="userForm" action="https://ecommerce-api-livid-six.vercel.app/user" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" >
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" >
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password">
-        <button type="submit">Submit</button>
-    </form>
+    <h1>User Login Page</h1>
+    <label for="email">Email:</label>
+    &nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="email" id="email" name="email" >
+    <br>
+    <label for="password">Password:</label>
+    <input type="text" id="password" name="password">
+    <br>
+    <button onclick="sendData()">Submit</button>
+
+    <script>
+        async function sendData(){
+            const emailInput = document.getElementById("email").value;
+            const passwordInput = document.getElementById("password").value;
+
+            const url = "https://ecommerce-api-livid-six.vercel.app/users/" + emailInput + "/" + passwordInput;
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                //save returned user id as cookie
+                document.cookie = "user_id=" + data;
+
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+    </script>
 </body>
 </html>
