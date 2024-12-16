@@ -17,7 +17,7 @@
             </ul>
             <form>
                 <button><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></button>
-                <input type="text" placeholder="Sök">
+                <input id="productInput" type="text" placeholder="Sök efter produkter..." oninput="delayInput(event)">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
@@ -32,6 +32,7 @@
     <section class="product-grid">
 
     </section>
+    <span id="searchErrorContainer"></span>
   </main>
 
   <script src="main.js"></script>
