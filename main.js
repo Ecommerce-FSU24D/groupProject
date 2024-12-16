@@ -31,6 +31,9 @@ async function fetchProducts(categoryName) {
         // Filtrerar produkter baserat på kategori
         const filterProducts = products.filter(product => categories[product.category] === categoryName);
 
+        // ### Spara produkter i localStorage. ###
+        localStorage.setItem('products', JSON.stringify(filterProducts));
+
         const productGrid = document.querySelector('.product-grid');
 
         if (filterProducts.length === 0) {
@@ -39,7 +42,7 @@ async function fetchProducts(categoryName) {
         }
     
 
-        filterProducts.forEach(product => {
+        filterProducts.forEach((product, index) => {
           const productCard = document.createElement('div');
           productCard.classList.add('product-card');
 
@@ -57,7 +60,7 @@ async function fetchProducts(categoryName) {
             <p>${price}</p>
             <h3>${product.name}</h3>
             <p>Betyg: ${rating} av 5</p>
-            <p>${product.description.substring(0, 50)}... <a href="product.html?id=${product.id}" class="read-more-link">Läs mer</a></p>
+            <p>${product.description.substring(0, 50)}... <a href="product-page.html?index=${index}" class="read-more-link">Läs mer</a></p>
 
           `;
 
