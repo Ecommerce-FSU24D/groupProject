@@ -48,7 +48,7 @@ async function fetchProducts(categoryName) {
           productCard.classList.add('product-card');
 
           // Extrahera priset 
-          const price = product.price["$numberDecimal"] ? `${product.price["$numberDecimal"]} kr` : "Ej angivet";
+          const price = product.price ? `${product.price} kr` : "Ej angivet";
 
           // Hämtar betyget
           const rating = Array.isArray(product.ratings) && product.ratings.length > 0
@@ -121,7 +121,7 @@ function fetchInputProduct(name, category, minPrice, maxPrice, averageRating, ra
             productCard.classList.add('product-card');
   
             // Extrahera priset 
-            const price = product.price["$numberDecimal"] ? `${product.price["$numberDecimal"]} kr` : "Ej angivet";
+            const price = product.price ? `${product.price} kr` : "Ej angivet";
   
             // Hämtar betyget
             const rating = Array.isArray(product.ratings) && product.ratings.length > 0
