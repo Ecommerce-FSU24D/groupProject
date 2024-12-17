@@ -8,7 +8,8 @@
 
 /* ##### Product-grid ##### */
 
-
+const searchErrorContainer = document.getElementById('searchErrorContainer');
+const productGrid = document.querySelector('.product-grid');
 
 const categories = {
     "67587d1b1b92081d71bb9836": "Jul",
@@ -84,6 +85,82 @@ if (selectedCategory) {
     fetchProducts(selectedCategory);
 } else {
     document.querySelector('.product-grid').innerHTML = `<p>Ingen kategori vald.</p>`;
+}
+
+function inputBorderLoadingStart(id){
+    const element = document.getElementById(id);
+    element.classList.add('inputBorderLoading');
+}
+
+function inputBorderLoadingEnd(id){
+    const element = document.getElementById(id);
+    element.classList.remove('inputBorderLoading');
+}
+
+function fetchInputProduct(name, category, minPrice, maxPrice, averageRating, ratingSort) {
+    searchErrorContainer.innerHTML = "";
+    inputBorderLoadingStart('productInput');
+    let url = `https://ecommerce-api-livid-six.vercel.app/products?categoryName=${selectedCategory}`;
+    if (name !== "") {
+        url += `&name=${encodeURIComponent(name)}`;
+    }
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+        if (response.status === 404) {
+            throw new Error("404: Produkter hittades inte");
+        } else {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+    }
+            return response.json();
+    })
+    .then(data => {
+        data.forEach((product, index) => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+  
+            // Extrahera priset 
+            const price = product.price["$numberDecimal"] ? `${product.price["$numberDecimal"]} kr` : "Ej angivet";
+  
+            // Hämtar betyget
+            const rating = Array.isArray(product.ratings) && product.ratings.length > 0
+            ? product.ratings[0].rating
+            : "Ingen rating";
+  
+  
+            productCard.innerHTML = `
+                <img src="${product.images}" alt="${product.title}">
+                <p>${price}</p>
+                <h3>${product.name}</h3>
+                <p>Betyg: ${rating} av 5</p>
+                <p>${product.description.substring(0, 50)}... <a href="product-page.html?index=${index}" class="read-more-link">Läs mer</a></p>
+            `;
+  
+            productGrid.appendChild(productCard);
+          });
+    })
+    .catch(error => {
+        if(error.message.includes("404")){
+            
+        } else{
+        searchErrorContainer.innerHTML += `<div class="errorHandler">Något har gått fel med sökande av produkter<br>${error}</div>`;
+        }
+    })
+    .finally(final => {
+        inputBorderLoadingEnd('productInput');
+    });
+}
+
+let typingTimer;
+const debounceDelay = 800;
+function delayInput(event){
+    clearTimeout(typingTimer);
+
+    typingTimer = setTimeout(() => {
+        productGrid.innerHTML = "";
+        fetchInputProduct(event.target.value);
+    }, debounceDelay);
 }
 
 /* ##### Product-page ##### */
