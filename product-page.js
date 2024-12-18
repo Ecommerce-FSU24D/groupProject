@@ -81,13 +81,17 @@ reviewForm.addEventListener('submit', async (event) => {
     };
 
     try {
-        const response = await fetch('https://ecommerce-api-livid-six.vercel.app/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
+      const response = await fetch(`https://ecommerce-api-livid-six.vercel.app/products/${product._id}/reviews`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            rating: parseInt(document.getElementById('rating').value),
+            comment: document.getElementById('description-review').value,
+            user_id: 'USER_ID' // Vi behöver hämta userns ID och lägga in den här..
+        }),
+    });
 
         if (response.ok) {
             alert('Tackar för recensionen!');
