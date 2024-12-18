@@ -51,16 +51,14 @@ async function fetchProducts(categoryName) {
           const price = product.price ? `${product.price} kr` : "Ej angivet";
 
           // Hämtar betyget
-          const rating = Array.isArray(product.ratings) && product.ratings.length > 0
-          ? product.ratings[0].rating
-          : "Betyg saknas";
+          const averageRating = product.averageRating ? product.averageRating : "Ingen rating";
 
           productCard.innerHTML = `
 
             <img src="${product.images}" alt="${product.title}">
             <p>${price}</p>
             <h3>${product.name}</h3>
-            <p>Betyg: ${rating} av 5</p>
+            <p>Betyg: ${averageRating} av 5</p>
             <p>${product.description.substring(0, 50)}... <a href="product-page.html?index=${index}" class="read-more-link">Läs mer</a></p>
 
           `;
@@ -124,16 +122,14 @@ function fetchInputProduct(name, category, minPrice, maxPrice, averageRating, ra
             const price = product.price ? `${product.price} kr` : "Ej angivet";
   
             // Hämtar betyget
-            const rating = Array.isArray(product.ratings) && product.ratings.length > 0
-            ? product.ratings[0].rating
-            : "Ingen rating";
+            const averageRating = product.averageRating ? product.averageRating : "Ingen rating";
   
   
             productCard.innerHTML = `
                 <img src="${product.images}" alt="${product.title}">
                 <p>${price}</p>
                 <h3>${product.name}</h3>
-                <p>Betyg: ${rating} av 5</p>
+                <p>Betyg: ${averageRating} av 5</p>
                 <p>${product.description.substring(0, 50)}... <a href="product-page.html?index=${index}" class="read-more-link">Läs mer</a></p>
             `;
   

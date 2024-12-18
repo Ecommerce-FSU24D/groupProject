@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // const review = product.ratings[0].review;
   const ratings = product.ratings;
 
+
   async function fetchUsers() {
     try {
       const response = await fetch('https://ecommerce-api-livid-six.vercel.app/users');
@@ -56,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 (async () => {
   await fetchUsers();
-  console.log(usersData);
   ratings.map( review => {
     const user = usersData.find(user => user._id === review.user_id);
     const username = user ? `${user.first_name} ${user.last_name}` : "Anonym";
@@ -87,9 +87,9 @@ reviewForm.addEventListener('submit', async (event) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            user_id: 'USER_ID', // Vi behöver hämta userns ID och lägga in den här..
+            user_id: '67585c481b92081d71bb9832', // Vi behöver hämta userns ID och lägga in den här..
             rating: parseInt(document.getElementById('rating').value),
-            review: document.getElementById('description-review').value
+            comment: document.getElementById('description-review').value
             
         }),
     });
