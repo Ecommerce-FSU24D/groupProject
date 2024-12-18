@@ -1,0 +1,112 @@
+/* Grundläggande stil */
+body {
+    margin: 0;
+    font-family: "Helvetica, Arial, sans-serif";
+    color: #444;
+    line-height: 1.8;
+    background: url(../assets/bkom.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.content-section {
+    display: flex;
+    justify-content: space-around;
+    margin: 50px auto;
+}
+
+.about, .vision, .cta {
+    flex: 1;
+    margin: 0 15px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.about h2, .vision h2, .cta h2 {
+    color: #7E121D;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+/* CTA-knapp */
+.button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #7E121D;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: transform 0.3s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    background: #C50537;
+}
+
+/* Kontaktsektion */
+footer.contact {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contact-box {
+    text-align: center;
+}
+
+.contact-box a {
+    text-decoration: none;
+    color: #7E121D;
+}
+
+.contact-box a:hover {
+    text-decoration: underline;
+}
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url(../assets/bakgrund5.png), linear-gradient(to bottom, rgba(52, 117, 58, 0.362) 10%, rgb(255, 255, 255) 100%);
+    background-position: center ; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    background-blend-mode: overlay;
+    color: white;
+    border-bottom:  dashed 5px #CEAC5C;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* --- NAV END --- */
+
+/* --- LINKS START --- */
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+}
+
+nav ul {
+    display: flex;
+    gap: 15px;
+    font-size: 25px;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none; 
+}
+
+nav a:hover {
+    color: #CEAC5C;
+    text-decoration: underline;
+}
