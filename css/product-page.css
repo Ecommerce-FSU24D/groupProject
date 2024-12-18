@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-.header > .navbar {
+/* ##### Header #### */
+/* .header > .navbar {
   display: flex;
   gap: 50px;
   background-color: #597454;
@@ -26,17 +27,125 @@
   font-size: 24px;
   font-weight: bold;
   text-decoration: none;
+} */
+
+/* --- NAV START --- */
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(../assets/bakgrund5.png), linear-gradient(to bottom, rgba(52, 117, 58, 0.362) 10%, rgb(255, 255, 255) 100%);
+  background-position: center ; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  background-blend-mode: overlay;
+  color: white;
+  border-bottom:  dashed 5px #CEAC5C;
+  width: 100%;
+  overflow: hidden;
 }
 
+/* --- NAV END --- */
+
+/* --- LINKS START --- */
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+}
+
+nav ul {
+  display: flex;
+  gap: 15px;
+  font-size: 25px;
+  list-style: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none; 
+}
+
+nav a:hover {
+  color: #CEAC5C;
+  text-decoration: underline;
+}
+
+/* --- LINKS END --- */
+
+/* --- SEARCH START --- */
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+form input[type="text"] {
+  padding: 8px;
+  font-size: 20px;
+  border: 1px solid white;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+form button {
+  border: none;
+  color: white;
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+form button:hover {
+  cursor: pointer;
+  color: #CEAC5C;
+  transform: scale(1.05); 
+}
+
+/* --- SEARCH END --- */
+
+/* --- LOGO START --- */
+
+.logo {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-grow: 1;
+  margin: 2%;
+}
+
+.logo img {
+  width: 30%;
+  height: auto;
+  justify-self: center;
+  background-color: #597454;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+}
+
+/* --- LOGO END --- */
+
+
+
+
+
+
+
+/* ###### Product wrapper ######*/
 #product-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 450px;
+  width: 40%;
+  height: 350px;
   margin: auto;
   margin-top: 55px;
 }
+
 
 #product-image-container >img{
   max-width: 100%;
@@ -52,27 +161,53 @@
 
 #product-info > h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 120px;
   margin-top: 40px;
-  font-size: 40px;
+  font-size: 50px;
 }
 
 #product-info > p {
   margin-bottom: 20px;
   font-size: 24px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+/*##### Price #####*/
 #product-info > #product-price {
-  font-size: 36px;
+  font-size: 60px;
   margin-top: 25px;
   margin-bottom: 25px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 main {
   margin-bottom: 40px;
 }
 
-#product-info > h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
+.product-info-header{
+  font-weight: bold;
+  margin-top: 30px;
+  font-size: 28px;
+}
+
+/* #### Product stock + image class ####*/
+.product-stock{
+  display: inline;
+  vertical-align: middle;
+}
+
+svg.product-stock {
+  width: 32px;
+  height: 32px;
+}
+
+/* ### Product rating + image class ####*/
+.product-rating{
+  display: inline;
+  vertical-align: middle;
+}
+
+img.product-rating{
+  height: 32px;
+  width: 32px;
 }
