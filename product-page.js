@@ -87,9 +87,10 @@ reviewForm.addEventListener('submit', async (event) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+            user_id: 'USER_ID', // Vi behöver hämta userns ID och lägga in den här..
             rating: parseInt(document.getElementById('rating').value),
-            comment: document.getElementById('description-review').value,
-            user_id: 'USER_ID' // Vi behöver hämta userns ID och lägga in den här..
+            review: document.getElementById('description-review').value
+            
         }),
     });
 
