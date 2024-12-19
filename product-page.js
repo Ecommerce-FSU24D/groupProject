@@ -62,9 +62,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const username = user ? `${user.first_name} ${user.last_name}` : "Anonym";
     productReviews.innerHTML += `
       <div class="review-container">
-        <p>${username}</p>
-        <p>Betyg ${review.rating} av 5</p>
-        <p> ${review.review} </p>
+        <p id="review-name">${username}</p>
+        <img class="review-rating" src="assets/icons8-rating-48.png">
+        <p class="review-rating">Betyg ${review.rating} av 5</p>
+        <p id="review-comment"> ${review.review} </p>
       </div>
     `
   });
