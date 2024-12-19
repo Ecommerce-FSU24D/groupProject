@@ -51,7 +51,11 @@ document.addEventListener("DOMContentLoaded", function() {
 <p class="product-info-header">Kundomdömen</p>
 <img class="product-rating" src="assets/icons8-rating-48.png">
   <p class="product-rating">${averageRating} av 5</p>
+  <div id="price-cart-container">
   <p id="product-price">${price} kr</p>
+  <input min="1" max="10" required type="number" value="1"></input>
+  <button>Lägg i kundvagn</button>
+  </div>
   <p class="product-info-header">Recensioner</p>
 `;
 
