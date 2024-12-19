@@ -269,11 +269,43 @@ form button:hover {
 }
 
 /*##### Price #####*/
-#product-info > #product-price {
+#price-cart-container>p {
   font-size: 60px;
   margin-top: 25px;
   margin-bottom: 25px;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#price-cart-container{
+  display: flex;
+  gap: 5px;
+}
+
+#price-cart-container>input{
+  width: 50px;
+  height: 45px;
+  margin-top: 37.5px;
+  margin-left: 50px;
+  font-size: 24px;
+  text-align: center;
+}
+
+#price-cart-container>button{
+width: 275px;
+height: 60px;
+margin-top: 30px;
+background-color: rgb(33, 143, 33);
+border: none;
+border-radius: 25px;
+color: white;
+font-size: 24px;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#price-cart-container>button:hover{
+  cursor: pointer;
+  background-color: rgb(31, 102, 31);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 main {
