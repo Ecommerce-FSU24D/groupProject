@@ -108,6 +108,12 @@ form button:hover {
   border-radius: 12px;
 }
 
+.logo a {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
 /* --- LOGO END --- */
 
 h1 {
