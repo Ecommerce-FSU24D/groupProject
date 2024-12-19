@@ -17,9 +17,40 @@
                     <li><a href="#">Om oss</a></li>
                 </ul>
                 <form>
+
                     <button><a href="Cart.html"><i class="fa-solid fa-cart-shopping"></i></a></button>
-                    <input type="text" placeholder="Sök">
-                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                      <!-- Dropdown meny-->
+                    <div class="dropdown">
+                        <button class="dropbtn"><i class="fa-solid fa-sliders"></i></button>
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                <p><strong>Välj kategori:</strong></p>
+                                <label><input type="checkbox" class="category-checkbox" value="Jul"> Jul</label><br>
+                                <label><input type="checkbox" class="category-checkbox" value="Rymden"> Rymden</label><br>
+                                <label><input type="checkbox" class="category-checkbox" value="Sport"> Sport</label><br>
+                                <label><input type="checkbox" class="category-checkbox" value="Träning"> Träning</label><br>
+                                <label><input type="checkbox" class="category-checkbox" value="LED"> LED</label><br>
+                                <label><input type="checkbox" class="category-checkbox" value="Samlarobjekt"> Samlarobjekt</label><br>
+                                <label><input type="checkbox" class="category-checkbox" value="Natur"> Natur</label><br>
+                                <label><input type="checkbox" class="category-checkbox" value="Halloween"> Halloween</label><br>
+                            </div>
+                            <div class="dropdown-section">
+                                <p><strong>Sortera efter pris:</strong></p>
+                                <label><input type="radio" name="price-sort" value="low-to-high"> Lägsta pris</label><br>
+                                <label><input type="radio" name="price-sort" value="high-to-low"> Högsta pris</label><br>
+                            </div>
+                            <div class="filter-buttons">
+                                <!-- Sök-knapp -->
+                                <button class="search-btn" id="searchButton">Sök</button>
+                                <!-- Rensa-knapp -->
+                                <button class="clear-btn" id="clearButton">Rensa val</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="text" id="searchInput" placeholder="Sök">
+                    <button type="submit" class="main-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+
                 </form>
             </div>
             <div class="logo">
@@ -29,6 +60,9 @@
     </header>
 
     <main>
+        <!-- Container för eventuella fel -->
+        <div id="searchErrorContainer"></div>
+        
         <div class="banner-container">
             <div class="categories-grid">
 
@@ -99,5 +133,6 @@
             </div>
         </div>
     </main>
+    <script src="category-page.js"></script>
 </body>
 </html>
