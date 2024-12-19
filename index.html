@@ -130,8 +130,8 @@
                     return;
                 }
 
-                //const url = "https://ecommerce-api-livid-six.vercel.app/users/authenticate";
-                const url = "http://localhost:5000/users/authenticate";
+                const url = "https://ecommerce-api-livid-six.vercel.app/users/authenticate";
+                //const url = "http://localhost:5000/users/authenticate";
 
                 const urlData = new URLSearchParams();
 
@@ -162,8 +162,8 @@
 
         async function logout(){
 
-            //const url = "https://ecommerce-api-livid-six.vercel.app/users/logout";
-            const url = "http://localhost:5000/users/logout";
+            const url = "https://ecommerce-api-livid-six.vercel.app/users/logout";
+            //const url = "http://localhost:5000/users/logout";
 
             const urlData = new URLSearchParams();
             const cookieVal = ('; '+document.cookie).split(`; TestCookie=`).pop().split(';')[0];
