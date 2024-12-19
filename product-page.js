@@ -112,3 +112,18 @@ reviewForm.addEventListener('submit', async (event) => {
 
 
 })
+
+// Sök i dropdown
+const searchButton = document.getElementById('searchButton');
+searchButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    fetchProducts();
+});
+
+// Rensa i dropdown
+const clearButton = document.getElementById('clearButton');
+clearButton.addEventListener('click', function (event) {
+    
+    categoryCheckboxes.forEach(checkbox => checkbox.checked = false);
+    priceRadios.forEach(radio => radio.checked = false);
+});

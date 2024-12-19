@@ -97,7 +97,7 @@ function inputBorderLoadingEnd(id){
 
 function fetchInputProduct(name, category, minPrice, maxPrice, averageRating, ratingSort) {
     searchErrorContainer.innerHTML = "";
-    inputBorderLoadingStart('productInput');
+    inputBorderLoadingStart('searchInput');
     let url = `https://ecommerce-api-livid-six.vercel.app/products?categoryName=${selectedCategory}`;
     if (name !== "") {
         url += `&name=${encodeURIComponent(name)}`;
@@ -144,7 +144,7 @@ function fetchInputProduct(name, category, minPrice, maxPrice, averageRating, ra
         }
     })
     .finally(final => {
-        inputBorderLoadingEnd('productInput');
+        inputBorderLoadingEnd('searchInput');
     });
 }
 
@@ -158,5 +158,20 @@ function delayInput(event){
         fetchInputProduct(event.target.value);
     }, debounceDelay);
 }
+
+// Sök i dropdown
+const searchButton = document.getElementById('searchButton');
+searchButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    fetchProducts();
+});
+
+// Rensa i dropdown
+const clearButton = document.getElementById('clearButton');
+clearButton.addEventListener('click', function (event) {
+    
+    categoryCheckboxes.forEach(checkbox => checkbox.checked = false);
+    priceRadios.forEach(radio => radio.checked = false);
+});
 
 /* ##### Product-page ##### */
