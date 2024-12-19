@@ -6,8 +6,8 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <h1>User Signup Page</h1>
-
+    <a href="index.html">&lt&lt&lt Back to home</a>
+    <h1>User Sign up Page</h1>
     <label for="name">Username:</label>
     <input type="text" id="name" name="name" >
     <br>
@@ -18,24 +18,74 @@
     <label for="password">Password:</label>
     <input type="text" id="password" name="password">
     <br>
-    <button onclick="addUser()">Submit</button>
+    <button onclick="addUser()">Sign Up</button>
+    <br>
+    <br>
+    <div id="errorDiv" style="display:none;color: red;">Error</div>
 
     <script>
+        validate();
+
+        async function validate(){
+            try {
+                const cookieVal = ('; '+document.cookie).split(`; TestCookie=`).pop().split(';')[0];
+
+                if(cookieVal == ""){
+                    return;
+                }
+
+                //const url = "https://ecommerce-api-livid-six.vercel.app/users/authenticate";
+                const url = "http://localhost:5000/users/authenticate";
+
+                const urlData = new URLSearchParams();
+
+                urlData.append('session', cookieVal);
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: urlData
+                });
+
+                if (response.ok) {
+                    window.location.replace("index.html");
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
         async function addUser(){
-            const nameInput = document.getElementById("name").value;
-            const emailInput = document.getElementById("email").value;
-            const passwordInput = document.getElementById("password").value;
+            try{
+                const nameInput = document.getElementById("name").value;
+                const emailInput = document.getElementById("email").value;
+                const passwordInput = document.getElementById("password").value;
 
-            const data = new URLSearchParams();
+                //incredibly basic input checking, should probably be done server side
+                if(nameInput == "" || emailInput == "" || passwordInput == ""){
+                    throw Error("Empty fields");
+                } else if(emailInput.indexOf('@') == -1){
+                    throw Error("Incorrect email");
+                }
 
-            data.append('name', nameInput);
-            data.append('email', emailInput);
-            data.append('password', passwordInput);
+                const data = new URLSearchParams();
 
-            await fetch("https://ecommerce-api-livid-six.vercel.app/users/add", {
-                method: 'POST',
-                body: data
-            });
+                data.append('name', nameInput);
+                data.append('email', emailInput);
+                data.append('password', passwordInput);
+
+                await fetch("https://ecommerce-api-livid-six.vercel.app/users/add", {
+                    method: 'POST',
+                    body: data
+                });
+
+                window.location.replace("login.html");
+            } catch (error) {
+                const div = document.getElementById("errorDiv");
+                div.innerHTML = error;
+                div.style.display = "block";
+                console.error(error.message);
+            }
         }
     </script>
 </body>
