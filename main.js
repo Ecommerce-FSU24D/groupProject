@@ -51,16 +51,14 @@ async function fetchProducts(categoryName) {
           const price = product.price ? `${product.price} kr` : "Ej angivet";
 
           // Hämtar betyget
-          const rating = Array.isArray(product.ratings) && product.ratings.length > 0
-          ? product.ratings[0].rating
-          : "Betyg saknas";
+          const averageRating = product.averageRating ? product.averageRating : "Ingen rating";
 
           productCard.innerHTML = `
 
             <img src="${product.images}" alt="${product.title}">
             <p>${price}</p>
             <h3>${product.name}</h3>
-            <p>Betyg: ${rating} av 5</p>
+            <p>Betyg: ${averageRating} av 5</p>
             <p>${product.description.substring(0, 50)}... <a href="product-page.html?index=${index}" class="read-more-link">Läs mer</a></p>
 
           `;
@@ -99,7 +97,7 @@ function inputBorderLoadingEnd(id){
 
 function fetchInputProduct(name, category, minPrice, maxPrice, averageRating, ratingSort) {
     searchErrorContainer.innerHTML = "";
-    inputBorderLoadingStart('productInput');
+    inputBorderLoadingStart('searchInput');
     let url = `https://ecommerce-api-livid-six.vercel.app/products?categoryName=${selectedCategory}`;
     if (name !== "") {
         url += `&name=${encodeURIComponent(name)}`;
@@ -124,16 +122,14 @@ function fetchInputProduct(name, category, minPrice, maxPrice, averageRating, ra
             const price = product.price ? `${product.price} kr` : "Ej angivet";
   
             // Hämtar betyget
-            const rating = Array.isArray(product.ratings) && product.ratings.length > 0
-            ? product.ratings[0].rating
-            : "Ingen rating";
+            const averageRating = product.averageRating ? product.averageRating : "Ingen rating";
   
   
             productCard.innerHTML = `
                 <img src="${product.images}" alt="${product.title}">
                 <p>${price}</p>
                 <h3>${product.name}</h3>
-                <p>Betyg: ${rating} av 5</p>
+                <p>Betyg: ${averageRating} av 5</p>
                 <p>${product.description.substring(0, 50)}... <a href="product-page.html?index=${index}" class="read-more-link">Läs mer</a></p>
             `;
   
@@ -148,7 +144,7 @@ function fetchInputProduct(name, category, minPrice, maxPrice, averageRating, ra
         }
     })
     .finally(final => {
-        inputBorderLoadingEnd('productInput');
+        inputBorderLoadingEnd('searchInput');
     });
 }
 
@@ -162,5 +158,20 @@ function delayInput(event){
         fetchInputProduct(event.target.value);
     }, debounceDelay);
 }
+
+// Sök i dropdown
+const searchButton = document.getElementById('searchButton');
+searchButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    fetchProducts();
+});
+
+// Rensa i dropdown
+const clearButton = document.getElementById('clearButton');
+clearButton.addEventListener('click', function (event) {
+    
+    categoryCheckboxes.forEach(checkbox => checkbox.checked = false);
+    priceRadios.forEach(radio => radio.checked = false);
+});
 
 /* ##### Product-page ##### */
