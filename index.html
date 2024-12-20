@@ -12,7 +12,27 @@
         <nav>
             <div class="nav-content">
                 <ul>
-                    <li><a href="login.html">Logga in</a></li>
+
+                    <div id="loginThing" style=
+                    "display: none;
+                    background-color: #E6DCB1;
+                    border-radius: 25px;
+                    padding-right: 10px;
+                    ">
+                        <img style=
+                        "width: 60px; 
+                        margin-right: 5px;
+                        border-radius: 25px;" 
+                        src="assets/default_avatar.jpg" alt="Avatar">
+                        <div>
+                            <div>
+                                <a id="topName" href="userProfile.html">Namm</a>
+                            </div>
+                            <a href="#" onclick="logout(); return false">Logga ut</a>
+                        </div>
+                    </div>
+                    <li id="loginList"><a href="login.html">Logga in</a></li>
+
                     <li><a href="om-oss.html">Kontakt</a></li>
                     <li><a href="om-oss.html">Om oss</a></li>
                 </ul>
@@ -133,6 +153,81 @@
             </div>
         </div>
     </main>
+    <script>
+        //run check
+        validate();
+
+        //checking if user is signed in, if not then go to home page
+        async function validate(){
+            try {
+                const cookieVal = ('; '+document.cookie).split(`; TestCookie=`).pop().split(';')[0];
+
+                if(cookieVal == ""){
+                    return;
+                }
+
+                const url = "https://ecommerce-api-livid-six.vercel.app/users/authenticate";
+                //const url = "http://localhost:5000/users/authenticate";
+
+                const urlData = new URLSearchParams();
+
+                urlData.append('session', cookieVal);
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: urlData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const responseData = await response.json();
+
+                document.getElementById("topName").innerHTML = responseData.session[1];
+                document.getElementById("loginThing").style.display = "flex";
+                document.getElementById("loginList").style.display = "none";
+
+            } catch (error) {
+                //user failed to auth
+                document.getElementById("loginThing").style.display = "none";
+                document.getElementById("loginList").style.display = "block";
+                console.log(error);
+            }
+        }
+
+        async function logout(){
+
+            const url = "https://ecommerce-api-livid-six.vercel.app/users/logout";
+            //const url = "http://localhost:5000/users/logout";
+
+            const urlData = new URLSearchParams();
+            const cookieVal = ('; '+document.cookie).split(`; TestCookie=`).pop().split(';')[0];
+
+            if(cookieVal == ""){
+                return;
+            }
+
+            urlData.append('session', cookieVal);
+
+            try {
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: urlData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                location.reload();
+
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+    </script>
     <script src="category-page.js"></script>
 </body>
 </html>

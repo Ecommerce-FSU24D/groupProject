@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserPage</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-content">
+                <ul>
+                    <div id="loginThing" style=
+                    "display: none;
+                    background-color: #E6DCB1;
+                    border-radius: 25px;
+                    padding-right: 10px;
+                    ">
+                        <img style=
+                        "width: 60px; 
+                        margin-right: 5px;
+                        border-radius: 25px;" 
+                        src="assets/default_avatar.jpg" alt="Avatar">
+                        <div>
+                            <div>
+                                <a id="topName" href="userProfile.html">Name</a>
+                            </div>
+                            <a href="#" onclick="logout(); return false">Logga ut</a>
+                        </div>
+                    </div>
+                    <li id="loginList"><a href="#">Logga in</a></li>
+                    <li><a href="index.html">Hem</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="#">Om oss</a></li>
+                </ul>
+                <form>
+                    <button><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></button>
+                    <input type="text" placeholder="Sök">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="logo">
+                <img src="assets/sidelogo.svg" alt="Side Shop Logo">
+            </div>
+        </nav>
+    </header>
+
+    <div style=
+    "margin-top: 10px;
+    padding-left: 25%;
+    padding-right: 25%;
+    margin-bottom: 10px;">
+        <div style="
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        background-color: #CEAC5C;
+        border-radius: 25px;
+        padding: 10px;">
+            <div style=
+            "display: flex;
+            align-items: center; 
+            justify-content: space-between;
+            width: 99%;
+            padding-left: 10px;">
+                <div>
+                    <div style=
+                    "display: flex;
+                    align-items: center; 
+                    justify-content: space-between;
+                    width: 145%;
+                    background-color: #E6DCB1;
+                    border-radius: 25px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    margin-bottom: 60px;">
+                        <div>
+                            <h1>Namn</h1>
+                        </div>
+                        <div>
+                            <h1 id="userName">TESTNAMN</h1>
+                        </div>
+                    </div>
+                    <div style=
+                    "display: flex;
+                    align-items: center; 
+                    justify-content: space-between;
+                    width: 145%;
+                    background-color: #E6DCB1;
+                    border-radius: 25px;
+                    padding-left: 10px;
+                    padding-right: 10px;">
+                        <div>
+                            <h1>Email</h1>
+                        </div>
+                        <div>
+                            <h1 id="userMail">TESTMAIL</h1>
+                        </div>
+                    </div>
+                    <div style=
+                    "display: flex;
+                    align-items: center; 
+                    justify-content: center;
+                    width: 150%;
+                    margin-top: 50px;">
+                        <button style="font-size: 20px; padding: 10px">Uppdatera uppgifter</button>
+                    </div>
+                </div>    
+                <div>
+                    <img src="assets/default_avatar.jpg" alt="Avatar">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //run check
+        validate();
+
+        //checking if user is signed in, if not then go to home page
+        async function validate(){
+            try {
+                const cookieVal = ('; '+document.cookie).split(`; TestCookie=`).pop().split(';')[0];
+
+                if(cookieVal == ""){
+                    return;
+                }
+
+                const url = "https://ecommerce-api-livid-six.vercel.app/users/authenticate";
+                //const url = "http://localhost:5000/users/authenticate";
+
+                const urlData = new URLSearchParams();
+
+                urlData.append('session', cookieVal);
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: urlData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const responseData = await response.json();
+
+                document.getElementById("userName").innerHTML = responseData.session[1];
+                document.getElementById("userMail").innerHTML = responseData.session[2];
+
+                document.getElementById("topName").innerHTML = responseData.session[1];
+                document.getElementById("loginThing").style.display = "flex";
+                document.getElementById("loginList").style.display = "none";
+
+            } catch (error) {
+                //user failed to auth
+                document.getElementById("loginThing").style.display = "none";
+                document.getElementById("loginList").style.display = "block";
+                console.log(error);
+                window.location.replace("index.html");
+            }
+        }
+
+        async function logout(){
+
+            const url = "https://ecommerce-api-livid-six.vercel.app/users/logout";
+            //const url = "http://localhost:5000/users/logout";
+
+            const urlData = new URLSearchParams();
+            const cookieVal = ('; '+document.cookie).split(`; TestCookie=`).pop().split(';')[0];
+
+            if(cookieVal == ""){
+                return;
+            }
+
+            urlData.append('session', cookieVal);
+
+            try {
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: urlData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                location.reload();
+
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+        
+    </script>
+</body>
+</html>
